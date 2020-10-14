@@ -4,10 +4,10 @@ const user = require('../controllers/user.js');
 
 // User resource. Will mostly get used with insomnia or curl since there will be only one user
 router.get('/users', user.getUsers);
-router.get('/users/:userid');
-router.post('/users');
-router.put('/users/:userid');
-router.delete('/users/:userid');
+router.get('/users/:userid', user.getUserWithId);
+router.post('/users', user.createUser);
+router.put('/users/:userid', user.updateUser);
+router.delete('/users/:userid', user.deleteUser);
 
 // Post resource
 router.get('/posts');
