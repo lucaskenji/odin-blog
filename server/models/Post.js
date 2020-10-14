@@ -9,10 +9,6 @@ const postSchema = new Schema({
 		ref: 'User'
 	},
 	timestamp: Date,
-	comments: [{
-		type: Schema.Types.ObjectId,
-		ref: 'Comment'
-	}],
 	hidden: {
 		type: Boolean,
 		default: false

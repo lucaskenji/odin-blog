@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const user = require('../controllers/user.js');
 const post = require('../controllers/post.js');
+const comment = require('../controllers/comment.js');
+
 
 // User resource. Will mostly get used with insomnia or curl since there will be only one user
 router.get('/users', user.getUsers);
@@ -18,11 +20,11 @@ router.put('/posts/:postid', post.updatePost);
 router.delete('/posts/:postid', post.deletePost);
 
 // Comment resource
-router.get('/comments');
-router.get('/comments/:commentid');
-router.post('/comments');
-router.put('/comments/:commentid');
-router.delete('/comments/:commentid');
+router.get('/posts/:postid/comments', comment.getComments);
+router.get('/posts/:postid/comments/:commentid', comment.getCommentWithId);
+router.post('/posts/:postid/comments', comment.commentValidation, comment.createComment);
+router.put('/posts/:postid/comments/:commentid', comment.updateComment);
+router.delete('/posts/:postid/comments/:commentid', comment.deleteComment);
 
 // Authentication
 router.post('/signin');

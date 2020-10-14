@@ -4,7 +4,12 @@ const Schema = mongoose.Schema;
 const commentSchema = new Schema({
 	author: String,
 	text: String,
-	timestamp: Date
+	timestamp: Date,
+	post: {
+		type: Schema.Types.ObjectId,
+		ref: 'Post',
+		required: true
+	}
 });
 
 const Comment = mongoose.model('Comment', commentSchema);

@@ -4,7 +4,7 @@ const { body, validationResult } = require('express-validator');
 
 
 exports.getPosts = (req, res) => {
-	Post.find().lean().populate('comments').populate('author')
+	Post.find().lean().populate('author')
 	.then((results) => {
 		if (results.length === 0) {
 			return res.status(404).send('No posts found');
@@ -20,7 +20,7 @@ exports.getPosts = (req, res) => {
 
 
 exports.getPostWithId = (req, res) => {
-	Post.findById(req.params.postid).lean().populate('comments').populate('author')
+	Post.findById(req.params.postid).lean().populate('author')
 	.then((result) => {
 		if (!result) {
 			return res.status(404).send('Post not found');
@@ -53,8 +53,7 @@ exports.createPost = (req, res) => {
 		title: req.body.title,
 		text: req.body.text,
 		author: req.body.author,
-		timestamp: new Date(),
-		comments: []
+		timestamp: new Date()
 	});
 	
 	newPost.save((err) => {
