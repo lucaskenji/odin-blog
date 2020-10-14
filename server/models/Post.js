@@ -13,7 +13,10 @@ const postSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'Comment'
 	}],
-	hidden: Boolean
+	hidden: {
+		type: Boolean,
+		default: false
+	}
 });
 
 const Post = mongoose.model('Post', postSchema);

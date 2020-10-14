@@ -105,7 +105,7 @@ exports.updateUser = (req, res) => {
 				return res.status(500).send('An internal error occurred');
 			}
 			
-			return res.json(result);
+			return res.json({ ok: result.ok });
 		});
 	});
 }
