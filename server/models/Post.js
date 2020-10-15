@@ -8,7 +8,8 @@ const postSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'User'
 	},
-	timestamp: Date,
+	date: Date,
+	formattedDate: String,
 	hidden: {
 		type: Boolean,
 		default: false

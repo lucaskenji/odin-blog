@@ -9,10 +9,6 @@ exports.getComments = (req, res) => {
 			return res.status(404).send('No comments found');
 		}
 		
-		if (results.length === 0) {
-			return res.status(404).send('No comments found');
-		}
-		
 		res.json(results);
 	})
 }
@@ -47,10 +43,22 @@ exports.createComment = (req, res) => {
 			return res.status(400).send('Post does not exist');
 		}
 		
+		const currentDate = new Date();
+		let timestamp = [currentDate.getDay(), currentDate.getMonth(), currentDate.getFullYear()];
+				
+		if (timestamp[0] < 10) {
+			timestamp[0] = ['0', timestamp[0]].join('');
+		}
+		
+		if (timestamp[1] < 10) {
+			timestamp[1] = ['0', timestamp[1]].join('');
+		}		
+		
 		const newComment = new Comment({
 			author: req.body.author,
 			text: req.body.text,
-			timestamp: new Date(),
+			date: currentDate,
+			formattedDate: timestamp.join('/'),
 			post: req.params.postid
 		});
 		

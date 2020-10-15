@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const PORT = process.env.PORT || 3000;
 const apiRouter = require('./routes/api.js');
 
@@ -16,6 +17,10 @@ mongoose.connect(process.env.URLSTRING, { useUnifiedTopology: true, useNewUrlPar
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'mongo connection error'));
 
+
+app.use(cors({
+	origin: 'http://localhost:3000'
+}))
 
 // Routes and middlewares
 app.use('/api/', apiRouter);
